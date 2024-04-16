@@ -1,0 +1,53 @@
+{% extends "AppLibrary/padre.html" %}
+{% load static %}
+{% block contenidoDinamico %}
+
+<h1>Página de álbumes</h1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>Agrega un álbum</h2>
+
+      {% if albumFormulario.errors %}
+
+      <p style="color: red">Hay errores en los datos, revisa por favor.</p>
+
+      {% endif %}
+
+      <form action="/AppLibrary/albumes/" method="post">
+        {% csrf_token %}
+        <table>
+          {{ albumFormulario.as_table}}
+        </table>
+        <input type="submit" value="Enviar" />
+      </form>
+    </div>
+    <div class="col">
+      <h2>Búsca un álbum</h2>
+
+      <form action="/AppLibrary/albumes/" method="get">
+        {% csrf_token %}
+        <input type="text" name="titulo" />
+        <input type="submit" value="Enviar" />
+      </form>
+
+      {% if albumes %}
+      <h2>Búsqueda del título: {{titulo}}</h2>
+      <table class="table">
+        <tr>
+          <th>Título</th>
+          <th>Artistas</th>
+        </tr>
+        {% for album in albumes %}
+        <tr>
+          <td>{{album.titulo}}</td>
+          <td>{{album.artistas}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

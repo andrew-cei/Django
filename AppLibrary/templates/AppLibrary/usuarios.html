@@ -1,0 +1,53 @@
+{% extends "AppLibrary/padre.html" %}
+{% load static %}
+{% block contenidoDinamico %}
+
+<h1>Página de usuarios</h1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>Agrega un usuario</h2>
+
+      {% if usuarioFormulario.errors %}
+
+      <p style="color: red">Hay errores en los datos, revisa por favor.</p>
+
+      {% endif %}
+
+      <form action="/AppLibrary/usuarios/" method="post">
+        {% csrf_token %}
+        <table>
+          {{ usuarioFormulario.as_table}}
+        </table>
+        <input type="submit" value="Enviar" />
+      </form>
+    </div>
+    <div class="col">
+      <h2>Búsca un usuario</h2>
+
+      <form action="/AppLibrary/usuarios/" method="get">
+        {% csrf_token %}
+        <input type="text" name="nombre" />
+        <input type="submit" value="Enviar" />
+      </form>
+
+      {% if usuarios %}
+      <h2>Búsqueda del usuario llamado: {{nombre}}</h2>
+      <table class="table">
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+        </tr>
+        {% for usuario in usuarios %}
+        <tr>
+          <td>{{usuario.nombre}}</td>
+          <td>{{usuario.apellido}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
