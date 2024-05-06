@@ -1,0 +1,18 @@
+{% extends "AppLibrary/padre.html" %}
+{% load static %}
+{% block contenidoDinamico %}
+
+<h1>Listado de Libros</h1>
+<a href="{% url 'NuevoLibro' %}">Crear Libro</a>
+
+{% for libro in libros %}
+<li>Título: {{libro.titulo}}
+    <p>
+        <a href="{% url 'DetalleLibro' libro.pk %}">Ver</a>
+        <a href="{% url 'EditarLibro' libro.pk %}">Editar</a>
+        <a href="{% url 'BorrarLibro' libro.pk %}">Borrar</a>
+    </p>
+</li>
+
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "AppLibrary/padre.html" %}
+{% load static %}
+{% block contenidoDinamico %}
+
+<h1>Listado de Álbumes</h1>
+<a href="{% url 'NuevoAlbum' %}">Crear Álbum</a>
+
+{% for album in albumes %}
+<li>Título: {{album.titulo}}
+    <p>
+        <a href="{% url 'DetalleAlbum' album.pk %}">Ver</a>
+        <a href="{% url 'EditarAlbum' album.pk %}">Editar</a>
+        <a href="{% url 'BorrarAlbum' album.pk %}">Borrar</a>
+    </p>
+</li>
+
+{% endfor %}
+{% endblock %}

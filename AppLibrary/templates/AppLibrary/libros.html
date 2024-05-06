@@ -6,23 +6,6 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h2>Agrega un libro</h2>
-
-      {% if libroFormulario.errors %}
-
-      <p style="color: red">Hay errores en los datos, revisa por favor.</p>
-
-      {% endif %}
-
-      <form action="/AppLibrary/libros/" method="post">
-        {% csrf_token %}
-        <table>
-          {{ libroFormulario.as_table}}
-        </table>
-        <input type="submit" value="Enviar" />
-      </form>
-    </div>
-    <div class="col">
       <h2>Búsca un libro</h2>
 
       <form action="/AppLibrary/libros/" method="get">

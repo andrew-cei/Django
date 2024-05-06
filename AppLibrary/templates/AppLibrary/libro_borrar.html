@@ -1,0 +1,12 @@
+{% extends "AppLibrary/padre.html" %}
+{% load static %}
+{% block contenidoDinamico %}
+
+<h1>Borrar Libro</h1>
+
+<form action="" method="post">{% csrf_token %}
+    <p>¿Estás seguro de que deseas borrar el libro {{libro.titulo}}?</p>
+    <input type="submit" value="Eliminar">
+</form>
+
+{% endblock %}

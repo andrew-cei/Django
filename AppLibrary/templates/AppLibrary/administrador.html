@@ -1,0 +1,60 @@
+{% extends "AppLibrary/padre.html" %}
+{% load static %}
+{% block contenidoDinamico %}
+
+<h1>Administración</h1>
+{% if albumFormulario %}
+<div class="row">
+  <form action="/AppLibrary/editarAlbum/" method="post">
+    {% csrf_token %}
+    <table>
+      {{ albumFormulario.as_table}}
+    </table>
+    <input type="submit" value="Enviar" />
+</div>
+{% endif %}
+<div class="row">
+  <h2>Álbumes</h2>
+  <table class="table">
+    <tr>
+      <th>Título</th>
+      <th>Artistas</th>
+      <th>Código</th>
+      <th>Editar</th>
+      <th>Borrar</th>
+    </tr>
+    {% for album in albumes %}
+    <tr>
+      <td>{{album.titulo}}</td>
+      <td>{{album.artistas}}</td>
+      <td>{{album.codigo}}</td>
+      <td><a href="{% url 'EditarAlbum' album.pk %}" class="btn btn btn-info" role="button">Editar</a></td>
+      <td><a href="{% url 'BorrarAlbumAdmin' album.codigo %}" class="btn btn btn-danger" role="button">Borrar</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+<div class="row">
+  <h2>Libros</h2>
+  <table class="table">
+    <tr>
+      <th>Título</th>
+      <th>Autor</th>
+      <th>Código</th>
+      <th>Editar</th>
+      <th>Borrar</th>
+    </tr>
+    {% for libro in libros %}
+    <tr>
+      <td>{{libro.titulo}}</td>
+      <td>{{libro.autor}}</td>
+      <td>{{libro.codigo}}</td>
+      <td><a href="{% url 'EditarLibro' libro.pk %}" class="btn btn btn-info" role="button">Editar</a></td>      
+      <td><a href="{% url 'BorrarLibroAdmin' libro.codigo %}" class="btn btn btn-danger" role="button">Borrar</a></td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+
+{% endblock %}

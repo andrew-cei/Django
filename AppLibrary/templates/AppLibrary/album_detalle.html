@@ -1,0 +1,12 @@
+{% extends "AppLibrary/padre.html" %}
+{% load static %}
+{% block contenidoDinamico %}
+
+<h1>Álbum detalle</h1>
+<p>Título: <i>{{album.titulo}}</i></p>
+<p>Artista: <i>{{album.artistas}}</i></p>
+<p>
+    <a href="{% url 'ListaAlbumes' %}">Regresar</a>
+</p>
+
+{% endblock %}

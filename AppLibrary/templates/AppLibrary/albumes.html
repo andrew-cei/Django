@@ -6,23 +6,6 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h2>Agrega un álbum</h2>
-
-      {% if albumFormulario.errors %}
-
-      <p style="color: red">Hay errores en los datos, revisa por favor.</p>
-
-      {% endif %}
-
-      <form action="/AppLibrary/albumes/" method="post">
-        {% csrf_token %}
-        <table>
-          {{ albumFormulario.as_table}}
-        </table>
-        <input type="submit" value="Enviar" />
-      </form>
-    </div>
-    <div class="col">
       <h2>Búsca un álbum</h2>
 
       <form action="/AppLibrary/albumes/" method="get">

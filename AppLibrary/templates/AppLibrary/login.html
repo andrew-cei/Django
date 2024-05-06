@@ -1,0 +1,15 @@
+{% extends "AppLibrary/padre.html" %}
+{% load static %}
+{% block contenidoDinamico %}
+
+<h1>Página de usuarios</h1>
+<div class="container">
+  <form action="/AppLibrary/login/" method="post">{% csrf_token %}
+    <table>
+      {{ form.as_p}}
+    </table>
+    <input type="submit" value="Iniciar sesión" />
+  </form>
+</div>
+
+{% endblock %}

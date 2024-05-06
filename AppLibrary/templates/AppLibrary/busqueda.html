@@ -1,0 +1,64 @@
+{% extends "AppLibrary/padre.html" %} {% load static %} 
+{% block contenidoDinamico %}
+
+<h1>Página de búsqueda</h1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>Búsca un álbum</h2>
+
+      <form action="/AppLibrary/albumes/" method="get">
+        {% csrf_token %}
+        <input type="text" name="titulo" />
+        <input type="submit" value="Enviar" />
+      </form>
+    </div>
+    {% if albumes %}
+    <div class="col">
+      <h2>Búsqueda del título: {{titulo}}</h2>
+      <table class="table">
+        <tr>
+          <th>Título</th>
+          <th>Artistas</th>
+        </tr>
+        {% for album in albumes %}
+        <tr>
+          <td>{{album.titulo}}</td>
+          <td>{{album.artistas}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+      {% endif %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h2>Búsca un libro</h2>
+
+      <form action="/AppLibrary/libros/" method="get">
+        {% csrf_token %}
+        <input type="text" name="titulo" />
+        <input type="submit" value="Enviar" />
+      </form>
+    </div>
+    {% if libros %}
+    <div class="col">
+      <h2>Búsqueda del título: {{titulo}}</h2>
+      <table class="table">
+        <tr>
+          <th>Título</th>
+          <th>Autor</th>
+        </tr>
+        {% for libro in libros %}
+        <tr>
+          <td>{{libro.titulo}}</td>
+          <td>{{libro.autor}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
